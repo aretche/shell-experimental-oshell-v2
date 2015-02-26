@@ -1,0 +1,10 @@
+[target]
+programs=OShel       #Programa principal
+units=analizador.pp comandos.pp utilidades.pp
+examples=ejemplo2Cat ejemploCat
+
+
+[compiler]
+version=2.4.0
+
+

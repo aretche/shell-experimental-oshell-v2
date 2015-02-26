@@ -1,0 +1,315 @@
+UNIT utilidades;
+INTERFACE
+	USES crt, strings, baseunix, sysutils;
+
+	Const 	N = 300;			// Número máximo de archivos a listar en un directorio (ls)
+			LF = #10;			// Caracter Line Feed.
+			CR = #13;			// Caracter Carriage Return.
+			CRLF = CR + LF;		// CRLF
+
+	Type vDirent = array [1..N] of Dirent;   // Vector para almacenar nombres de archivos de un directorio y así ordenarlos.
+	
+	
+	datos = record
+                            pid: cardinal;
+                            prioridad: string;  
+                            estado: string;
+                            numero: cardinal;
+                            nombre: string;
+			  
+                         end;
+                         
+    vJobs = array [1..20] of datos;  // Vector para Jobs  
+    
+   // puntero = cardinal;                 
+
+	var	stdOutPut: Text;			// Archivo de redirección de la salida estándar.
+		strOutPut: string;			// Nombre del archivo de redirección.
+		newInPut : Text;			// Redirección de la entrada estándar para comando pipe.
+		flagInPut: Boolean;			// Se le asigna momentaneamente true durante un pipe.
+        punt: cardinal;           // Tamanio de vector Jobs.
+        vector : vJobs;
+         registro: datos;
+      
+         
+
+//  UTILIDADES
+	function espacio(s: string): byte; 										// Devuelve la posición del primer espacio [ ] en un string.
+	function proxEspacio(n: byte; s: string): byte; 						// Devuelve la cantidad de caracteres que hay hasta el proximo espacio.
+	function parametro(s: string): byte; 									// Devuelve la posición del primer guión [-] en un string.
+	function parametro(n: byte; s: string): string; 						// Devuelve el enésimo parámetro del string s, comenzado con guión [-].
+	function argumento(n: byte; s: string): string;							// Devuelve el enésimo argumento del string s.
+	function cantParametros(s: string): byte; 								// Devuelve la cantidad de parámetros que posee un string, determina con [-].
+	function cantArgumentos(s: string): byte;								// Devuelve la cantidad de argumentos que posee un string.
+	function puntos(s: string): integer; 									// Cantidad de puntos '.' en un string.
+	function dirActual: string; 											// Devuelve la dirección de trabajo actual.
+	function dirHome: string;												// Devuelve el directorio Home. Por defecto /home/user.
+	function strSin(param1, param2: string): string;						// elimina param2 de la cadena param1.
+	procedure burbujaDirent(var v: vDirent; max: integer);					// ordena los archivos listados por ls. Algoritmo burbuja.
+	function obtenerDirectorio(desde: integer; ENTRADA: string): string; 	// Extrae el path de una cadena de entrada.
+	function tieneParametro(p,s: string): boolean; 							// Se le pasa un parámetro (e.j.: -l) y responde si la cadena lo contine o no.
+	function redireccion(s: string): boolean;								// Devuelve true si encuentra los operadores '>' o '>>' en la cadena.
+	function tuberia(s: string): boolean;									// Devuelve true si encuentra el operador '|' en una cadena.
+	function error(n:integer): string; 									// Devuelve el mensaje de error <n>.
+    procedure asignarJobs(pid: cardinal; nombre:string);                                                  // Asigna la informacion de cada proceso para listar en el comando Jobs.    
+    function buscarPrioridad(buscado:string):boolean;
+    function buscar2daPrioridad:integer;
+    
+IMPLEMENTATION
+function buscar2daPrioridad:integer;
+var menos: string;
+    i: integer;
+begin
+menos:= '-';
+for i:=0 to 19 do
+if vector[i].prioridad = menos then
+buscar2daPrioridad:=i;
+end;
+
+
+function buscarPrioridad(buscado:string):boolean;
+var i:integer;
+
+begin
+buscarPrioridad:=false;
+for i:=0 to 19 do
+if (vector[i].prioridad = buscado) then
+buscarPrioridad:=true;
+end;
+
+
+
+procedure asignarJobs(pid: cardinal; nombre:string);
+
+begin
+if buscarPrioridad('+') = true then
+   if buscarPrioridad('-')= true then
+    begin
+     vector[punt].pid := pid;
+     vector[punt].prioridad:= ' ';
+	 vector[punt].estado:='Corriendo';
+	 vector[punt].nombre := nombre;
+	 vector[punt].numero := punt;
+	 inc(punt);
+	end
+   else begin
+   	 vector[punt].pid := pid;
+     vector[punt].prioridad:= '-';
+	 vector[punt].estado:='Corriendo';
+	 vector[punt].nombre := nombre;
+	 vector[punt].numero := punt;
+	 inc(punt);	
+	end
+else begin
+vector[punt].pid := pid;
+     vector[punt].prioridad:= '+';
+	 vector[punt].estado:='Corriendo';
+	 vector[punt].nombre := nombre;
+	 vector[punt].numero := punt;
+	 inc(punt);
+		end
+  
+    
+	   end;
+
+	
+						 
+						
+					
+	function espacio(s: string): byte;
+	var I: integer;
+	Begin
+		espacio := 0;
+		I:= 0;
+		repeat
+			inc(I);
+			if s[I]=#32 then espacio:= I; // #32 = espacio ' '
+		until (espacio <> 0) or (I=length(s));
+		if espacio = 0 then espacio := (length(s) + 1);
+	End;
+	
+	
+	function proxEspacio(n: byte; s: string): byte;
+	var aux: string;
+	Begin
+		aux:= copy(s,n,length(s));
+		proxEspacio:= espacio(aux);
+	End;
+	
+	
+	function parametro(s: string): byte;
+	var I: integer;
+	Begin
+		parametro := 0;
+		I:= 0;
+		repeat
+			inc(I);
+			if s[I]=#45 then parametro:= I; // #45 = Guión '-'
+		until (parametro <> 0) or (I=length(s));
+	End;
+	
+	
+	function cantParametros(s: string): byte;
+	var I,contador: integer;
+	Begin
+		contador:= 0;
+		for I:=1 to length(s) do
+			if s[I]=#45 then inc(contador);
+		cantParametros := contador;
+	End;
+	
+	
+	function cantArgumentos(s: string): byte;
+	Begin
+		cantArgumentos:= 0;
+		while s <> '' do
+		Begin
+			cantArgumentos := cantArgumentos + 1;
+			s:= copy(s,espacio(s)+1, length(s));
+		End;
+	End;
+	
+	
+	function parametro(n: byte; s: string): string;
+	{
+		Condición: Máximo tres parámetros.
+		
+	}
+	var aux: string;
+	Begin
+		aux:= copy(s,parametro(s),length(s));
+		if cantParametros(aux) < n then parametro:='';
+		if n = 1 then parametro:= (copy(aux,1,espacio(aux)-1));
+		if n = 2 then parametro:= (copy(aux,4,espacio(aux)-1));
+		if n = 3 then parametro:= (copy(aux,7,espacio(aux)-1));
+	End;
+	
+	
+	function argumento(n: byte; s: string): string;
+	var aux, aux2: string;
+	Begin
+		if cantArgumentos(s) < n then argumento:= ''
+		else
+		begin
+			aux:= copy(s,1,espacio(s)-1);
+			if n = 1 then argumento:= aux;
+			aux2:= copy(strSin(s,aux),2,length(s));
+			if n = 2 then argumento:= copy(aux2,1,espacio(aux2)-1);
+			if n = 3 then argumento:= copy(aux2,espacio(aux2)+1,length(s));
+		end;
+	end;
+	
+		
+	function puntos(s: string): integer;
+	var I: integer;
+	Begin
+		puntos:= 0;
+		for I:= 1 to length(s) do
+			if s[I] = #46 then puntos:= puntos + 1;
+	End;
+
+
+	function dirActual: string;
+	Begin
+		getDir(0,dirActual);
+	End;
+
+		
+	function dirHome: string;
+	Begin
+		dirHome:= fpGetEnv('HOME');
+	End;
+
+
+	function strSin(param1, param2: string): string;
+	Begin
+		strSin:= rightStr(param1,((length(param1))-(length(param2))));
+	End;
+
+
+	procedure burbujaDirent(var v: vDirent; max: integer);
+	var I,J: integer;
+		aux: Dirent;
+	Begin
+		for I:= 1 to max-1 do
+		 for J:= 1 to max-I do
+		  if upcase(strPas(v[J].d_name)) > upcase(strPas(v[J+1].d_name)) then
+			Begin
+				aux := v[J+1];
+				v[J+1]:= v[J];
+				v[J] := aux;
+			End;
+	End;
+	
+	
+	function obtenerDirectorio(desde: integer; ENTRADA: string): string;
+	var i,principio: integer;
+		aux: string;
+	Begin
+		i:= 0;
+		principio:= 0;
+		aux:= copy(ENTRADA,desde,length(ENTRADA));
+		repeat
+			inc(i);
+			case aux[i] of
+			'-': inc(i);
+			' ': ;
+			else principio:= i;
+			end;
+		until ((principio <> 0) or (i = length(aux)));
+		if principio = 0 then obtenerDirectorio:= ''
+		else obtenerDirectorio:= copy(aux,principio,length(aux));
+	End;
+	
+	
+	function tieneParametro(p,s: string): boolean;
+	var i: integer;
+	Begin
+		tieneParametro := false;
+		if cantParametros(s) > 0 then
+		begin
+			for i:= 1 to cantParametros(s) do
+				if upcase(parametro(i,s)) = upcase(p) then tieneParametro:= true;
+		end;
+	End;
+	
+	
+	function redireccion(s: string): boolean;
+	Begin
+		redireccion:= (pos(' > ',s) <> 0) or (pos(' >> ',s) <> 0);
+	End;
+	
+	
+	function tuberia(s: string): boolean;
+	Begin
+		tuberia:= (pos(' | ',s) <> 0);
+	End;
+	
+	
+	function error(n:integer): string;
+	Begin
+		case n of
+		1: 		error:= 'Error nº 1: Parámetros insuficientes.';
+		2: 		error:= 'Error nº 2: No se puede reonocer el comando, o los parámetros son incorrectos.';
+		3: 		error:= 'Error nº 3: Falla en el Fork, no es posible ejecutar el nuevo proceso.';
+		4: 		error:= 'Error nº 4: El directorio no existe, o no puede ser accedido.';
+		5: 		error:= 'Comando no reconocido.';
+		6: 		error:= 'Error nº 6: Error en Exec, no es posible ejecutar el proceso.';
+		7: 		error:= 'Error nº 7: El programa no se encuentra en el Path.';
+		8: 		error:= 'Error nº 8: Parámetros incorrectos.';
+		9: 		error:= 'Error nº 9: Los parámetros deben ser de tipo numérico.';
+		10: 	error:= 'Error nº 10: Error al intentar abrir el/los archivo(s).';
+		11: 	error:= 'Error de redirección de la salida estándar - Operador ''>''';
+		12: 	error:= 'Error de redirección de la salida estándar - Operador ''>>''';
+		13: 	error:= 'Error al intentar crear tuberías.';
+		else 	error:= 'Error desconocido.';
+		end;
+		textattr:=$04;
+		writeln(error);
+	End;
+
+BEGIN
+	strOutPut:= '';					// StrOutPut refiere a la redirección de la salida estándar.
+	setTextLineEnding(stdOut,CRLF); // Asignándole formato a la salida estándar.
+	flagInPut:= false;
+END.

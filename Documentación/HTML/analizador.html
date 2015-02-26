@@ -1,0 +1,1786 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>analizador</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.22" />
+	<meta name="date" content="2014-02-21T02:28:03-0300" />
+	<style type="text/css">
+	body
+	{
+		font-family: Monospace, monospace;
+		font-size: 10pt;
+	}
+	.style_0
+	{
+		color: #000000;
+		background-color: #ffffff;
+	}
+	.style_1
+	{
+		color: #000000;
+		background-color: #ffffff;
+	}
+	.style_2
+	{
+		color: #d00000;
+		background-color: #ffffff;
+	}
+	.style_4
+	{
+		color: #d00000;
+		background-color: #ffffff;
+	}
+	.style_5
+	{
+		color: #007f7f;
+		background-color: #ffffff;
+	}
+	.style_7
+	{
+		color: #007f00;
+		background-color: #ffffff;
+	}
+	.style_9
+	{
+		color: #00007f;
+		background-color: #ffffff;
+		font-weight: bold;
+	}
+	.style_10
+	{
+		color: #ff8000;
+		background-color: #ffffff;
+	}
+	.style_12
+	{
+		color: #ff8000;
+		background-color: #ffffff;
+	}
+	.style_13
+	{
+		color: #301010;
+		background-color: #ffffff;
+	}
+	.style_32
+	{
+		color: #bfe77700;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_34
+	{
+		color: #000000;
+		background-color: #000000;
+		font-style: italic;
+	}
+	.style_35
+	{
+		color: #b6ec6fdd;
+		background-color: #bfe77740;
+		font-style: italic;
+	}
+	.style_37
+	{
+		color: #000000;
+		background-color: #000000;
+		font-style: italic;
+	}
+	.style_39
+	{
+		color: #b6c3dc09;
+		background-color: #b6eee35c;
+		font-weight: bold;
+	}
+	.style_40
+	{
+		color: #b6eee35c;
+		background-color: #bfe7791c;
+		font-weight: bold;
+	}
+	.style_41
+	{
+		color: #bfe7792c;
+		background-color: #9310760;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_43
+	{
+		color: #000000;
+		background-color: #000000;
+	}
+	.style_45
+	{
+		color: #000000;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_46
+	{
+		color: #9322e08;
+		background-color: #b6e252d2;
+		font-style: italic;
+	}
+	.style_47
+	{
+		color: #b6c30440;
+		background-color: #bfe78a04;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_48
+	{
+		color: #b6e995a0;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_49
+	{
+		color: #b761d900;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_50
+	{
+		color: #000008;
+		background-color: #b6e99000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_51
+	{
+		color: #b6e248df;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_52
+	{
+		color: #91e2408;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_53
+	{
+		color: #b6e99000;
+		background-color: #9310760;
+		font-weight: bold;
+	}
+	.style_54
+	{
+		color: #b6e99000;
+		background-color: #b6dc4226;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_55
+	{
+		color: #b6dfdf0e;
+		background-color: #b6e995a0;
+		font-weight: bold;
+	}
+	.style_56
+	{
+		color: #9310760;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_57
+	{
+		color: #8e9d6c8;
+		background-color: #000078;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_58
+	{
+		color: #8e9d0c0;
+		background-color: #b6ecbecd;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_59
+	{
+		color: #b6c3ccdf;
+		background-color: #8f30238;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_60
+	{
+		color: #920e5d8;
+		background-color: #9310760;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_61
+	{
+		color: #000145;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_63
+	{
+		color: #b6eee000;
+		background-color: #920e5d8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_64
+	{
+		color: #b6eee35c;
+		background-color: #920e5d8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_65
+	{
+		color: #000000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_66
+	{
+		color: #00014c;
+		background-color: #b76fa000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_67
+	{
+		color: #b73f94fb;
+		background-color: #920e5d8;
+		font-weight: bold;
+	}
+	.style_68
+	{
+		color: #920e5d8;
+		background-color: #b76fa000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_69
+	{
+		color: #000146;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_71
+	{
+		color: #b6eee000;
+		background-color: #bfe77bd0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_72
+	{
+		color: #920e5d8;
+		background-color: #8ed1b20;
+		font-style: italic;
+	}
+	.style_73
+	{
+		color: #b76fa000;
+		background-color: #920e5d8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_74
+	{
+		color: #8ed1b08;
+		background-color: #b6eabacd;
+		font-weight: bold;
+	}
+	.style_75
+	{
+		color: #bfe77bd0;
+		background-color: #bfe77b7c;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_76
+	{
+		color: #b6eee000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_77
+	{
+		color: #000000;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_78
+	{
+		color: #000001;
+		background-color: #b6c3ccdf;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_79
+	{
+		color: #b6e24a4f;
+		background-color: #920e5d8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_80
+	{
+		color: #40000004;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_81
+	{
+		color: #bfe77b7c;
+		background-color: #b6eee35c;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_82
+	{
+		color: #b6e99000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_83
+	{
+		color: #b6ebf18f;
+		background-color: #b6eee35c;
+		font-style: italic;
+	}
+	.style_84
+	{
+		color: #bfe77b7c;
+		background-color: #bfe77bd0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_85
+	{
+		color: #000050;
+		background-color: #bfe77b74;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_86
+	{
+		color: #b6eee35c;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_88
+	{
+		color: #b6eee000;
+		background-color: #bfe77bd0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_89
+	{
+		color: #000001;
+		background-color: #bfe77b88;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_90
+	{
+		color: #bfe77d88;
+		background-color: #b6eb18d2;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_91
+	{
+		color: #b6eee000;
+		background-color: #bfe77bd0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_92
+	{
+		color: #bfe77bd0;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_94
+	{
+		color: #bfe77bd0;
+		background-color: #b6e24d30;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_96
+	{
+		color: #000000;
+		background-color: #8ed1b20;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_97
+	{
+		color: #000000;
+		background-color: #bfe77c10;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_99
+	{
+		color: #000000;
+		background-color: #b6eee35c;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_100
+	{
+		color: #8ed69f8;
+		background-color: #bfe77bd0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_101
+	{
+		color: #000069;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_102
+	{
+		color: #935d1d0;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_103
+	{
+		color: #000004;
+		background-color: #8ed69f8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_106
+	{
+		color: #000000;
+		background-color: #92a0b80;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_108
+	{
+		color: #000001;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_109
+	{
+		color: #000050;
+		background-color: #b7505ae0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_110
+	{
+		color: #b7505ae0;
+		background-color: #b6e24a4f;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_111
+	{
+		color: #b6e248df;
+		background-color: #920e5e0;
+		font-weight: bold;
+	}
+	.style_112
+	{
+		color: #920e5e0;
+		background-color: #b6dc4046;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_113
+	{
+		color: #b6e99000;
+		background-color: #920e5d8;
+		font-weight: bold;
+	}
+	.style_114
+	{
+		color: #b6e99000;
+		background-color: #b6dc41ef;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_115
+	{
+		color: #b6dfdf0e;
+		background-color: #b6e995a0;
+		font-weight: bold;
+	}
+	.style_116
+	{
+		color: #920e5d8;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_117
+	{
+		color: #8e9d6c8;
+		background-color: #000068;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_118
+	{
+		color: #8e9d0b8;
+		background-color: #b6ecbecd;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_119
+	{
+		color: #b6c3ccdf;
+		background-color: #8f2e2c8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_120
+	{
+		color: #935d1d0;
+		background-color: #920e5d8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_121
+	{
+		color: #000145;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_123
+	{
+		color: #b6eee000;
+		background-color: #935d1d0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_124
+	{
+		color: #b6eee35c;
+		background-color: #935d1d0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_125
+	{
+		color: #000000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_126
+	{
+		color: #9465a20;
+		background-color: #b76fa000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_127
+	{
+		color: #b73f94fb;
+		background-color: #935d1d0;
+		font-weight: bold;
+	}
+	.style_128
+	{
+		color: #935d1d0;
+		background-color: #b76fa000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_129
+	{
+		color: #000146;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_131
+	{
+		color: #b6eee000;
+		background-color: #bfe78080;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_132
+	{
+		color: #935d1d0;
+		background-color: #8ed1b20;
+		font-style: italic;
+	}
+	.style_133
+	{
+		color: #b76fa000;
+		background-color: #935d1d0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_134
+	{
+		color: #8ed1b08;
+		background-color: #b6eabacd;
+		font-weight: bold;
+	}
+	.style_135
+	{
+		color: #bfe78080;
+		background-color: #bfe7802c;
+		font-weight: bold;
+	}
+	.style_136
+	{
+		color: #b6eee000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_137
+	{
+		color: #000000;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_138
+	{
+		color: #000001;
+		background-color: #b6c3ccdf;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_139
+	{
+		color: #b6e24a4f;
+		background-color: #935d1d0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_140
+	{
+		color: #40000003;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_141
+	{
+		color: #bfe7802c;
+		background-color: #b6eee35c;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_142
+	{
+		color: #000000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_143
+	{
+		color: #b6ebf18f;
+		background-color: #b6eee35c;
+		font-style: italic;
+	}
+	.style_144
+	{
+		color: #bfe7802c;
+		background-color: #bfe78080;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_145
+	{
+		color: #000050;
+		background-color: #bfe78024;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_146
+	{
+		color: #b6eee35c;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_148
+	{
+		color: #b6eee000;
+		background-color: #bfe78080;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_149
+	{
+		color: #000001;
+		background-color: #bfe78038;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_150
+	{
+		color: #bfe78238;
+		background-color: #b6eb18d2;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_151
+	{
+		color: #b6eee000;
+		background-color: #bfe78080;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_152
+	{
+		color: #bfe78080;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_154
+	{
+		color: #bfe78080;
+		background-color: #b6e24d30;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_156
+	{
+		color: #000000;
+		background-color: #8ed1b20;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_157
+	{
+		color: #000000;
+		background-color: #bfe780c0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_159
+	{
+		color: #000000;
+		background-color: #b6eee35c;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_160
+	{
+		color: #8ed69f8;
+		background-color: #bfe78080;
+		font-weight: bold;
+	}
+	.style_161
+	{
+		color: #000069;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_162
+	{
+		color: #92a0b80;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_163
+	{
+		color: #000004;
+		background-color: #8ed69f8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_166
+	{
+		color: #000000;
+		background-color: #92f7060;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_168
+	{
+		color: #000001;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_170
+	{
+		color: #000000;
+		background-color: #b6e24a4f;
+		font-weight: bold;
+	}
+	.style_171
+	{
+		color: #b6e248df;
+		background-color: #935d1d8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_172
+	{
+		color: #935d1d8;
+		background-color: #b6dc4046;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_173
+	{
+		color: #b6e99000;
+		background-color: #935d1d0;
+		font-weight: bold;
+	}
+	.style_174
+	{
+		color: #b6e99000;
+		background-color: #b6dc41ef;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_175
+	{
+		color: #b6dfdf0e;
+		background-color: #b6e995a0;
+		font-weight: bold;
+	}
+	.style_176
+	{
+		color: #935d1d0;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_177
+	{
+		color: #8e9d6c8;
+		background-color: #b6e99000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_178
+	{
+		color: #8e9d0b0;
+		background-color: #b6c3ccdf;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_179
+	{
+		color: #b6e24a4f;
+		background-color: #92a0b80;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_180
+	{
+		color: #000000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_181
+	{
+		color: #92a0b80;
+		background-color: #8ed1b08;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_182
+	{
+		color: #b6e99000;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_183
+	{
+		color: #b6ec55b1;
+		background-color: #b6eee35c;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_184
+	{
+		color: #8f100d0;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_185
+	{
+		color: #b6ecfee4;
+		background-color: #b7504440;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_187
+	{
+		color: #b76fa000;
+		background-color: #92a0b80;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_188
+	{
+		color: #92a0b80;
+		background-color: #000146;
+		font-style: italic;
+	}
+	.style_189
+	{
+		color: #b76fa000;
+		background-color: #92a0b80;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_190
+	{
+		color: #000000;
+		background-color: #b76fa000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_191
+	{
+		color: #b751f591;
+		background-color: #92a0b80;
+	}
+	.style_192
+	{
+		color: #b751f517;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_193
+	{
+		color: #8ed1b20;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_194
+	{
+		color: #92a0b80;
+		background-color: #b6eac49e;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_195
+	{
+		color: #b6eabacd;
+		background-color: #000001;
+		font-style: italic;
+	}
+	.style_196
+	{
+		color: #bfe784ec;
+		background-color: #b751f510;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_198
+	{
+		color: #000001;
+		background-color: #bfe78540;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_199
+	{
+		color: #b6c3ccdf;
+		background-color: #bfe78500;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_200
+	{
+		color: #92a0b80;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_201
+	{
+		color: #000000;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_203
+	{
+		color: #b6eee000;
+		background-color: #bfe784ec;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_204
+	{
+		color: #b6eee35c;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_205
+	{
+		color: #bfe78540;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_206
+	{
+		color: #bfe784e4;
+		background-color: #b6dc54fd;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_207
+	{
+		color: #b6eee000;
+		background-color: #92a0b80;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_208
+	{
+		color: #92a0b88;
+		background-color: #000050;
+	}
+	.style_209
+	{
+		color: #bfe78540;
+		background-color: #8e9f6e0;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_210
+	{
+		color: #bfe784f8;
+		background-color: #b6eee000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_211
+	{
+		color: #b6eb18d2;
+		background-color: #92a0b80;
+		font-style: italic;
+	}
+	.style_212
+	{
+		color: #bfe78540;
+		background-color: #bfe78554;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_213
+	{
+		color: #000001;
+		background-color: #b6ebe1d9;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_214
+	{
+		color: #bfe78540;
+		background-color: #b6ec6fdd;
+		font-weight: bold;
+	}
+	.style_215
+	{
+		color: #b6e24d30;
+		background-color: #8ea14c8;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_220
+	{
+		color: #b6eee35c;
+		background-color: #bfe7872c;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_221
+	{
+		color: #bfe78540;
+		background-color: #000020;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_223
+	{
+		color: #b6e99000;
+		background-color: #b6c3f7cf;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_224
+	{
+		color: #000000;
+		background-color: #bfe78580;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_225
+	{
+		color: #b6e252b6;
+		background-color: #b6e99000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_226
+	{
+		color: #94a2298;
+		background-color: #b6e252d2;
+		font-style: italic;
+	}
+	.style_227
+	{
+		color: #b6e99000;
+		background-color: #b6e99000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_229
+	{
+		color: #000000;
+		background-color: #000010;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_230
+	{
+		color: #000018;
+		background-color: #b6e99000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_231
+	{
+		color: #b6de75bb;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_232
+	{
+		color: #94a2298;
+		background-color: #000002;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_233
+	{
+		color: #94a2298;
+		background-color: #8e9d098;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_234
+	{
+		color: #b6e99000;
+		background-color: #b6dc4226;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_235
+	{
+		color: #b6e99000;
+		background-color: #b6c3f7cf;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_236
+	{
+		color: #000000;
+		background-color: #92a0c28;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_237
+	{
+		color: #b6e252b6;
+		background-color: #b6e99000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_238
+	{
+		color: #b76fa000;
+		background-color: #b73f9564;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_239
+	{
+		color: #b6eee338;
+		background-color: #92a0b88;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_240
+	{
+		color: #0000e0;
+		background-color: #92a0c28;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_241
+	{
+		color: #000145;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_243
+	{
+		color: #000000;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_244
+	{
+		color: #92a0b80;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_245
+	{
+		color: #000035;
+		background-color: #000000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_246
+	{
+		color: #92a0b80;
+		background-color: #b6eee338;
+		font-weight: bold;
+	}
+	.style_247
+	{
+		color: #b6eee000;
+		background-color: #92a0b80;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_248
+	{
+		color: #92a0b80;
+		background-color: #000050;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_249
+	{
+		color: #b76fa000;
+		background-color: #000001;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_250
+	{
+		color: #b7342819;
+		background-color: #92a0b80;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_251
+	{
+		color: #b6e99000;
+		background-color: #936d308;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_252
+	{
+		color: #000000;
+		background-color: #936d308;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_253
+	{
+		color: #fffffff8;
+		background-color: #b6e99000;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_254
+	{
+		color: #000000;
+		background-color: #8fa7a28;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.style_255
+	{
+		color: #80991de;
+		background-color: #936d308;
+		font-weight: bold;
+		font-style: italic;
+	}
+
+	</style>
+</head>
+
+<body>
+<p>
+<span class="style_9">UNIT&nbsp;</span><span class="style_1">analizador</span><span class="style_13">;</span><br />
+<span class="style_9">INTERFACE</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">Uses&nbsp;</span><span class="style_1">crt</span><span class="style_13">,&nbsp;</span><span class="style_1">comandos</span><span class="style_13">,&nbsp;</span><span class="style_1">utilidades</span><span class="style_13">,&nbsp;</span><span class="style_1">unix</span><span class="style_13">,&nbsp;</span><span class="style_1">baseunix</span><span class="style_13">,&nbsp;</span><span class="style_1">sysutils</span><span class="style_13">;&nbsp;&nbsp;&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+<span class="style_9">function&nbsp;</span><span class="style_1">analizar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">):&nbsp;</span><span class="style_1">boolean</span><span class="style_13">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;introducida&nbsp;por&nbsp;el&nbsp;usuario.</span><br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarCAT&nbsp;&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;para&nbsp;ejecutar&nbsp;el&nbsp;comando&nbsp;CAT.</span><br />
+<span class="style_9">function&nbsp;</span><span class="style_1">analizarCD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">):&nbsp;</span><span class="style_1">cint</span><span class="style_13">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;para&nbsp;ejecutar&nbsp;el&nbsp;comando&nbsp;CD.</span><br />
+<span class="style_9">function&nbsp;</span><span class="style_1">analizarEXEC&nbsp;&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">):&nbsp;</span><span class="style_1">cint</span><span class="style_13">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;para&nbsp;ejecutar&nbsp;el&nbsp;comando&nbsp;EXEC.</span><br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarKILL&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;para&nbsp;ejecutar&nbsp;el&nbsp;comando&nbsp;KILL.</span><br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarLS&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;para&nbsp;ejecutar&nbsp;el&nbsp;comando&nbsp;LS.</span><br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarPWD&nbsp;&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;para&nbsp;ejecutar&nbsp;el&nbsp;comando&nbsp;PWD.</span><br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarReDIR&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;si&nbsp;presenta&nbsp;redirección&nbsp;de&nbsp;la&nbsp;salida&nbsp;estándar.</span><br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarPipe&nbsp;&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Analiza&nbsp;la&nbsp;cadena&nbsp;si&nbsp;presenta&nbsp;pipes&nbsp;(tuberías).</span><br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+<span class="style_9">IMPLEMENTATION</span><br />
+<br />
+<span class="style_9">function&nbsp;</span><span class="style_1">analizar</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">):&nbsp;</span><span class="style_1">boolean</span><span class="style_13">;</span><br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizar&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)=</span><span class="style_10">'EXIT'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizar</span><span class="style_13">:=&nbsp;</span><span class="style_1">false&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Salir&nbsp;del&nbsp;programa.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)=</span><span class="style_10">'CLEAR'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">clrscr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Limpiar&nbsp;la&nbsp;pantalla.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;&nbsp;</span><span class="style_1">redireccion</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizarReDIR</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Redirección&nbsp;de&nbsp;la&nbsp;salida&nbsp;estándar.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">tuberia</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizarPipe</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Tubería&nbsp;(pipe).</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">),</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_7">3</span><span class="style_13">))=</span><span class="style_10">'CAT'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizarCAT</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Comando&nbsp;CAT</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">),</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_7">2</span><span class="style_13">))=</span><span class="style_10">'CD'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Comando&nbsp;CD</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">),</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_7">4</span><span class="style_13">))=</span><span class="style_10">'KILL'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizarKILL</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Comando&nbsp;KILL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">),</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_7">2</span><span class="style_13">))=</span><span class="style_10">'LS'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizarLS</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Comando&nbsp;LS</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">),</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_7">3</span><span class="style_13">))=</span><span class="style_10">'PWD'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">analizarPWD</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;&nbsp;</span><span class="style_4">//Comando&nbsp;PWD</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">ENTRADA&nbsp;</span><span class="style_13">&lt;&gt;&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarEXEC</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;=&nbsp;-</span><span class="style_7">1&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">error</span><span class="style_13">(</span><span class="style_7">5</span><span class="style_13">);&nbsp;</span><span class="style_4">//Comando&nbsp;no&nbsp;reconocido.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarCAT</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);</span><br />
+<span class="style_9">var&nbsp;</span><span class="style_1">dir1</span><span class="style_13">,&nbsp;</span><span class="style_1">dir2</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">tipo</span><span class="style_13">:&nbsp;</span><span class="style_9">byte</span><span class="style_13">;</span><br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">strOutPut&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">tipo&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">else&nbsp;</span><span class="style_1">tipo&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_7">1</span><span class="style_13">;&nbsp;</span><span class="style_4">//&nbsp;Tipo&nbsp;0:&nbsp;Salida&nbsp;estándar,&nbsp;tipo&nbsp;1:&nbsp;Redirigir&nbsp;la&nbsp;salida.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">dir1&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">5</span><span class="style_13">,</span><span class="style_1">proxEspacio</span><span class="style_13">(</span><span class="style_7">5</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)-</span><span class="style_7">1</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">dir1&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">dir2&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">obtenerDirectorio</span><span class="style_13">(</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">dir1</span><span class="style_13">)+</span><span class="style_7">5</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">dir1</span><span class="style_13">[</span><span class="style_7">1</span><span class="style_13">]&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'/'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">dir1&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">dirActual</span><span class="style_13">+</span><span class="style_10">'/'</span><span class="style_13">+</span><span class="style_1">dir1</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">dir2&nbsp;</span><span class="style_13">&lt;&gt;&nbsp;</span><span class="style_10">''</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">dir2</span><span class="style_13">[</span><span class="style_7">1</span><span class="style_13">]&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'/'</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">dir2&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">dirActual</span><span class="style_13">+</span><span class="style_10">'/'</span><span class="style_13">+</span><span class="style_1">dir2</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">CAT&nbsp;</span><span class="style_13">(</span><span class="style_1">dir1</span><span class="style_13">,</span><span class="style_1">dir2</span><span class="style_13">,</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<br />
+<span class="style_9">function&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">):&nbsp;</span><span class="style_1">cint</span><span class="style_13">;</span><br />
+<span class="style_2">{</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_2">Nombre:&nbsp;analizarCD.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_2">return:&nbsp;-1&nbsp;si&nbsp;hay&nbsp;error,&nbsp;0&nbsp;si&nbsp;se&nbsp;ejecutó&nbsp;con&nbsp;éxito.</span><br />
+<span class="style_2">}</span><br />
+<br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">:=&nbsp;</span><span class="style_7">0</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">2</span><span class="style_13">)&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">((</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">3</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">[</span><span class="style_7">3</span><span class="style_13">]=</span><span class="style_10">'&nbsp;'</span><span class="style_13">))&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">fpChDir</span><span class="style_13">(</span><span class="style_1">fpGetEnv</span><span class="style_13">(</span><span class="style_10">'HOME'</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">5</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">4</span><span class="style_13">,</span><span class="style_7">2</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_10">'..'</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">fpChDir</span><span class="style_13">(</span><span class="style_10">'..'</span><span class="style_13">)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">[</span><span class="style_7">4</span><span class="style_13">]&nbsp;=&nbsp;</span><span class="style_10">'/'&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">fpChDir</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">4</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)))&nbsp;&lt;&gt;</span><span class="style_7">0&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">fpChDir</span><span class="style_13">(</span><span class="style_1">dirActual&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">4</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)))&nbsp;&lt;&gt;&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">:=&nbsp;-</span><span class="style_7">1</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">error</span><span class="style_13">(</span><span class="style_7">4</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">End</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">fpChDir</span><span class="style_13">(</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">4</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)))&nbsp;&lt;&gt;</span><span class="style_7">0&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">fpChDir</span><span class="style_13">(</span><span class="style_1">dirActual&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_10">'/'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">4</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)))&nbsp;&lt;&gt;&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">:=&nbsp;-</span><span class="style_7">1</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">error</span><span class="style_13">(</span><span class="style_7">4</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">End</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<br />
+<span class="style_9">function&nbsp;</span><span class="style_1">analizarEXEC</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">):&nbsp;</span><span class="style_1">cint</span><span class="style_13">;</span><br />
+<span class="style_2">{</span><br />
+&nbsp;&nbsp;&nbsp;<span class="style_2">Nombre:&nbsp;analizarEXEC.</span><br />
+&nbsp;&nbsp;&nbsp;<span class="style_2">Condición:&nbsp;No&nbsp;se&nbsp;permiten&nbsp;más&nbsp;de&nbsp;3&nbsp;parámetros.</span><br />
+&nbsp;&nbsp;<br />
+<span class="style_2">}</span><br />
+<br />
+<span class="style_9">var&nbsp;</span><span class="style_1">cadena&nbsp;&nbsp;</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">aux&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">;</span><br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarExec&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_7">0</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cadena</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">espacio</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)-</span><span class="style_7">1</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">aux</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">cadena</span><span class="style_13">)+</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">));</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">((</span><span class="style_1">cadena</span><span class="style_13">[</span><span class="style_7">1</span><span class="style_13">]&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'/'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">FSearch&nbsp;</span><span class="style_13">(</span><span class="style_1">cadena</span><span class="style_13">,</span><span class="style_1">strpas</span><span class="style_13">(</span><span class="style_1">fpGetenv</span><span class="style_13">(</span><span class="style_10">'PATH'</span><span class="style_13">)))&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">''</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">or&nbsp;</span><span class="style_13">((</span><span class="style_1">cadena</span><span class="style_13">[</span><span class="style_7">1</span><span class="style_13">]&nbsp;=&nbsp;</span><span class="style_10">'/'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">fileExists</span><span class="style_13">(</span><span class="style_1">cadena</span><span class="style_13">)))&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">case&nbsp;</span><span class="style_1">cantArgumentos</span><span class="style_13">(</span><span class="style_1">aux</span><span class="style_13">)&nbsp;</span><span class="style_9">of&nbsp;</span><span class="style_4">//&nbsp;0,&nbsp;1,&nbsp;2&nbsp;o&nbsp;3&nbsp;parámetros.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">0</span><span class="style_13">:&nbsp;</span><span class="style_1">EXEC</span><span class="style_13">(</span><span class="style_1">cadena</span><span class="style_13">,[]);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">1</span><span class="style_13">:&nbsp;</span><span class="style_1">EXEC</span><span class="style_13">(</span><span class="style_1">cadena</span><span class="style_13">,[</span><span class="style_1">argumento</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">aux</span><span class="style_13">)]);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">2</span><span class="style_13">:&nbsp;</span><span class="style_1">EXEC</span><span class="style_13">(</span><span class="style_1">cadena</span><span class="style_13">,[</span><span class="style_1">argumento</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">aux</span><span class="style_13">),</span><span class="style_1">argumento</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">aux</span><span class="style_13">)]);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">3</span><span class="style_13">:&nbsp;</span><span class="style_1">EXEC</span><span class="style_13">(</span><span class="style_1">cadena</span><span class="style_13">,[</span><span class="style_1">argumento</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">aux</span><span class="style_13">),</span><span class="style_1">argumento</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">aux</span><span class="style_13">),</span><span class="style_1">argumento</span><span class="style_13">(</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">aux</span><span class="style_13">)]);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarExec</span><span class="style_13">:=&nbsp;-</span><span class="style_7">1</span><span class="style_13">;</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarKILL</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);</span><br />
+<span class="style_2">{</span><br />
+&nbsp;&nbsp;&nbsp;<span class="style_2">Nombre:&nbsp;analizarKILL.</span><br />
+&nbsp;&nbsp;&nbsp;<span class="style_2">Condición:&nbsp;Deben&nbsp;pasarse&nbsp;dos&nbsp;parámetros,&nbsp;sin&nbsp;excepción.</span><br />
+&nbsp;&nbsp;<br />
+<span class="style_2">}</span><br />
+<br />
+<span class="style_9">var&nbsp;</span><span class="style_1">str1</span><span class="style_13">,</span><span class="style_1">str2</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">proc</span><span class="style_13">,</span><span class="style_1">signal</span><span class="style_13">:&nbsp;</span><span class="style_1">longint</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">err</span><span class="style_13">:&nbsp;</span><span class="style_9">word</span><span class="style_13">;</span><br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">str1</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">6</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">));</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">str2</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">str1</span><span class="style_13">,</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">espacio</span><span class="style_13">(</span><span class="style_1">str1</span><span class="style_13">)-</span><span class="style_7">1</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">val</span><span class="style_13">(</span><span class="style_1">str2</span><span class="style_13">,</span><span class="style_1">signal</span><span class="style_13">,</span><span class="style_1">err</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">err</span><span class="style_13">&lt;&gt;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">9</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">str2</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">str1</span><span class="style_13">,</span><span class="style_1">espacio</span><span class="style_13">(</span><span class="style_1">str1</span><span class="style_13">)+</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">str1</span><span class="style_13">));</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">val</span><span class="style_13">(</span><span class="style_1">str2</span><span class="style_13">,</span><span class="style_1">proc</span><span class="style_13">,</span><span class="style_1">err</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">err</span><span class="style_13">&lt;&gt;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">9</span><span class="style_13">)&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;</span><span class="style_1">KILL</span><span class="style_13">(</span><span class="style_1">signal</span><span class="style_13">,</span><span class="style_1">proc</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarLS</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);</span><br />
+<span class="style_2">{</span><br />
+&nbsp;&nbsp;&nbsp;<span class="style_2">Nombre:&nbsp;analizarLS.</span><br />
+&nbsp;&nbsp;&nbsp;<span class="style_2">Opciones:&nbsp;Puede&nbsp;haber&nbsp;0,&nbsp;1,&nbsp;2&nbsp;o&nbsp;3&nbsp;parámetros&nbsp;identificados&nbsp;con&nbsp;un&nbsp;guión&nbsp;&lt;-&gt;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_2">y&nbsp;pueden&nbsp;estar&nbsp;en&nbsp;cualquier&nbsp;orden.&nbsp;Estos&nbsp;son&nbsp;&lt;-a&gt;,&nbsp;&lt;-f&gt;,&nbsp;&lt;-l&gt;.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_2">Puede&nbsp;haber&nbsp;o&nbsp;no&nbsp;1&nbsp;argumento&nbsp;que&nbsp;indique&nbsp;la&nbsp;ruta&nbsp;desde&nbsp;la&nbsp;cual</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_2">trabajar,&nbsp;luego&nbsp;de&nbsp;los&nbsp;parámetros&nbsp;comenzados&nbsp;con&nbsp;guión.</span><br />
+&nbsp;&nbsp;<br />
+<span class="style_2">}</span><br />
+<br />
+<span class="style_9">var&nbsp;</span><span class="style_1">directorio</span><span class="style_13">,</span><span class="style_1">cad</span><span class="style_13">,</span><span class="style_1">dirBase</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">err2</span><span class="style_13">,</span><span class="style_1">err8</span><span class="style_13">:&nbsp;</span><span class="style_1">boolean</span><span class="style_13">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Hacen&nbsp;referencia&nbsp;a&nbsp;los&nbsp;errores&nbsp;2&nbsp;y&nbsp;8&nbsp;respectivamente.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">correcto</span><span class="style_13">:&nbsp;</span><span class="style_1">boolean</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">tipo&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_13">:&nbsp;</span><span class="style_9">byte</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">err2</span><span class="style_13">:=&nbsp;</span><span class="style_1">false</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">err8</span><span class="style_13">:=&nbsp;</span><span class="style_1">false</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">correcto</span><span class="style_13">:=&nbsp;</span><span class="style_1">false</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">dirBase</span><span class="style_13">:=&nbsp;</span><span class="style_1">dirActual</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">strOutPut&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">tipo&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">else&nbsp;</span><span class="style_1">tipo&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_7">1</span><span class="style_13">;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Tipo&nbsp;0:&nbsp;Salida&nbsp;estándar,&nbsp;tipo&nbsp;1:&nbsp;Redirigir&nbsp;la&nbsp;salida.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">directorio</span><span class="style_13">:=&nbsp;</span><span class="style_1">obtenerDirectorio</span><span class="style_13">(</span><span class="style_7">4</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">);&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">case&nbsp;</span><span class="style_1">cantParametros</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">)&nbsp;</span><span class="style_9">of</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">0</span><span class="style_13">:&nbsp;&nbsp;</span><span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">ls</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">ls</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">1</span><span class="style_13">:&nbsp;&nbsp;</span><span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_4">//&nbsp;Si&nbsp;el&nbsp;parámetro&nbsp;es&nbsp;-l</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsL</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsL</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'A'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'F'</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">err8</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_4">//&nbsp;Si&nbsp;el&nbsp;parámetro&nbsp;es&nbsp;-f</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsF</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsF</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'A'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">err8</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_4">//&nbsp;Si&nbsp;el&nbsp;parámetro&nbsp;es&nbsp;-a</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsA</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsA</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;&lt;&gt;&nbsp;</span><span class="style_10">'F'</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">err8</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">2</span><span class="style_13">:&nbsp;&nbsp;</span><span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">or&nbsp;</span><span class="style_13">((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">))&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_4">//&nbsp;Si&nbsp;los&nbsp;parámetros&nbsp;son&nbsp;-l&nbsp;y&nbsp;-f</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsLF</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsLF</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;not&nbsp;</span><span class="style_13">((((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">and&nbsp;</span><span class="style_13">(((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">)))&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">err8</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">or&nbsp;</span><span class="style_13">((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_4">//&nbsp;Si&nbsp;los&nbsp;parámetros&nbsp;son&nbsp;-l&nbsp;y&nbsp;-a</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsLA</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsLA</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;not&nbsp;</span><span class="style_13">((((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">and&nbsp;</span><span class="style_13">(((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">)))&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">err8</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">or&nbsp;</span><span class="style_13">((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">))&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_4">//&nbsp;Si&nbsp;los&nbsp;parámetros&nbsp;son&nbsp;-a&nbsp;y&nbsp;-f</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsAF</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsAF</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;not&nbsp;</span><span class="style_13">((((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">))</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">and&nbsp;</span><span class="style_13">(((</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'L'</span><span class="style_13">)&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'</span><span class="style_13">))&nbsp;</span><span class="style_9">or&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'</span><span class="style_13">)))&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">err8</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_7">3</span><span class="style_13">:&nbsp;&nbsp;</span><span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">case&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;</span><span class="style_9">of</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_10">'L'</span><span class="style_13">:&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">))[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'&nbsp;</span><span class="style_9">then&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">))[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">correcto</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;&nbsp;</span><span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">))[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'A'&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">))[</span><span class="style_7">2</span><span class="style_13">])&nbsp;=&nbsp;</span><span class="style_10">'F'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">correcto</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_10">'F'</span><span class="style_13">:&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_9">begin&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'L'&nbsp;</span><span class="style_9">then&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'A'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">correcto</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;&nbsp;</span><span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'A'&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'L'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">correcto</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_10">'A'</span><span class="style_13">:&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'F'&nbsp;</span><span class="style_9">then&nbsp;begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'L'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">correcto</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;&nbsp;</span><span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'L'&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">upcase</span><span class="style_13">(</span><span class="style_1">parametro</span><span class="style_13">(</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">)[</span><span class="style_7">2</span><span class="style_13">]))&nbsp;=&nbsp;</span><span class="style_10">'F'&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">correcto</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;</span><span class="style_1">err2</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">correcto&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_4">//&nbsp;Si&nbsp;los&nbsp;parámetros&nbsp;son&nbsp;3&nbsp;y&nbsp;son&nbsp;-a,&nbsp;-f,&nbsp;-l&nbsp;en&nbsp;cualquier&nbsp;orden.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">directorio&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsAFL</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">directorio</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">)&nbsp;=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">lsAFL</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">cad</span><span class="style_13">:=&nbsp;</span><span class="style_10">'cd&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">dirBase</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizarCD</span><span class="style_13">(</span><span class="style_1">cad</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;</span><span class="style_1">err2</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">err2&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">err8&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">8</span><span class="style_13">);</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarPWD</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);</span><br />
+<span class="style_2">{</span><br />
+&nbsp;&nbsp;&nbsp;<span class="style_2">Nombre:&nbsp;analizarPWD.</span><br />
+&nbsp;&nbsp;&nbsp;<br />
+<span class="style_2">}</span><br />
+<span class="style_9">var&nbsp;</span><span class="style_1">tipo</span><span class="style_13">:&nbsp;</span><span class="style_9">byte</span><span class="style_13">;</span><br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">strOutPut&nbsp;</span><span class="style_13">=&nbsp;</span><span class="style_10">''&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">tipo&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">else&nbsp;</span><span class="style_1">tipo&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_7">1</span><span class="style_13">;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Tipo&nbsp;0:&nbsp;Salida&nbsp;estándar,&nbsp;tipo&nbsp;1:&nbsp;Redirigir&nbsp;la&nbsp;salida.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">[</span><span class="style_7">0</span><span class="style_13">]&nbsp;&gt;=&nbsp;</span><span class="style_12">#4</span><span class="style_13">)&nbsp;</span><span class="style_9">and&nbsp;not&nbsp;</span><span class="style_13">(</span><span class="style_1">flagInPut</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">2</span><span class="style_13">)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else&nbsp;</span><span class="style_1">pwd</span><span class="style_13">(</span><span class="style_1">tipo</span><span class="style_13">);</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarReDIR&nbsp;</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);</span><br />
+<span class="style_9">var&nbsp;</span><span class="style_1">comando</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">i</span><span class="style_13">,</span><span class="style_1">j</span><span class="style_13">:&nbsp;</span><span class="style_9">word</span><span class="style_13">;</span><br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">i</span><span class="style_13">:=&nbsp;</span><span class="style_1">pos</span><span class="style_13">(</span><span class="style_10">'&nbsp;&gt;&nbsp;'</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">j</span><span class="style_13">:=&nbsp;</span><span class="style_1">pos</span><span class="style_13">(</span><span class="style_10">'&nbsp;&gt;&gt;&nbsp;'</span><span class="style_13">,&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">i&nbsp;</span><span class="style_13">&lt;&gt;&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;&gt;&nbsp;rewrite&nbsp;(reescribe&nbsp;el&nbsp;archivo,&nbsp;lo&nbsp;crea&nbsp;si&nbsp;no&nbsp;existe).</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">strOutPut</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_1">i</span><span class="style_13">+</span><span class="style_7">3</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">));</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">comando</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">i</span><span class="style_13">-</span><span class="style_7">1</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_5">{$I-}</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">assign</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">,</span><span class="style_1">strOutPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">rewrite</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">IOResult&nbsp;</span><span class="style_13">&lt;&gt;&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">11</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizar</span><span class="style_13">(</span><span class="style_1">comando</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">close</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">strOutPut</span><span class="style_13">:=&nbsp;</span><span class="style_10">''</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_5">{$I+}</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">j&nbsp;</span><span class="style_13">&lt;&gt;&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin&nbsp;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;&gt;&gt;&nbsp;append&nbsp;(añade&nbsp;los&nbsp;datos&nbsp;al&nbsp;final&nbsp;del&nbsp;archivo).</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">strOutPut</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_1">j</span><span class="style_13">+</span><span class="style_7">4</span><span class="style_13">,</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">));</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">comando</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,</span><span class="style_7">1</span><span class="style_13">,</span><span class="style_1">j</span><span class="style_13">-</span><span class="style_7">1</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_5">{$I-}</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">assign</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">,</span><span class="style_1">strOutPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">fileExists</span><span class="style_13">(</span><span class="style_1">strOutPut</span><span class="style_13">)&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">append</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">)&nbsp;</span><span class="style_9">else&nbsp;</span><span class="style_1">rewrite</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">IOResult&nbsp;</span><span class="style_13">&lt;&gt;&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">12</span><span class="style_13">)&nbsp;</span><span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizar</span><span class="style_13">(</span><span class="style_1">comando</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">close</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">strOutPut</span><span class="style_13">:=&nbsp;</span><span class="style_10">''</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_5">{$I+}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<br />
+<span class="style_9">procedure&nbsp;</span><span class="style_1">analizarPipe</span><span class="style_13">(</span><span class="style_9">var&nbsp;</span><span class="style_1">ENTRADA</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">);</span><br />
+<span class="style_9">var&nbsp;</span><span class="style_1">i</span><span class="style_13">:&nbsp;</span><span class="style_9">word</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">aux</span><span class="style_13">,&nbsp;</span><span class="style_1">preString</span><span class="style_13">,&nbsp;</span><span class="style_1">postString</span><span class="style_13">:&nbsp;</span><span class="style_9">string</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+<span class="style_9">Begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">i</span><span class="style_13">:=&nbsp;</span><span class="style_1">pos</span><span class="style_13">(</span><span class="style_10">'&nbsp;|&nbsp;'</span><span class="style_13">,</span><span class="style_1">ENTRADA</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">preString&nbsp;&nbsp;&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,&nbsp;</span><span class="style_7">1</span><span class="style_13">,&nbsp;</span><span class="style_1">i</span><span class="style_13">-</span><span class="style_7">1</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">postString&nbsp;&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">copy</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">,&nbsp;</span><span class="style_1">i</span><span class="style_13">+</span><span class="style_7">3</span><span class="style_13">,&nbsp;</span><span class="style_1">length</span><span class="style_13">(</span><span class="style_1">ENTRADA</span><span class="style_13">));</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">if&nbsp;</span><span class="style_1">assignPipe</span><span class="style_13">(</span><span class="style_1">newInPut</span><span class="style_13">,</span><span class="style_1">stdOutPut</span><span class="style_13">)&nbsp;&lt;&gt;&nbsp;</span><span class="style_7">0&nbsp;</span><span class="style_9">then&nbsp;</span><span class="style_1">error</span><span class="style_13">(</span><span class="style_7">13</span><span class="style_13">)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">else</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">flagInPut&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_1">true</span><span class="style_13">;&nbsp;</span><span class="style_4">//&nbsp;Es&nbsp;un&nbsp;flag&nbsp;global&nbsp;que&nbsp;toma&nbsp;valor&nbsp;true&nbsp;durante&nbsp;un&nbsp;pipe.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">strOutPut&nbsp;</span><span class="style_13">:=&nbsp;</span><span class="style_10">'|'</span><span class="style_13">;&nbsp;&nbsp;</span><span class="style_4">//&nbsp;Al&nbsp;asignarle&nbsp;un&nbsp;valor&nbsp;diferente&nbsp;a&nbsp;'',&nbsp;la&nbsp;salida&nbsp;estándar&nbsp;se&nbsp;redirecciona.</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizar</span><span class="style_13">(</span><span class="style_1">preString</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">close</span><span class="style_13">(</span><span class="style_1">stdOutPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">while&nbsp;not&nbsp;</span><span class="style_1">eof</span><span class="style_13">(</span><span class="style_1">newInPut</span><span class="style_13">)&nbsp;</span><span class="style_9">do</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">readln</span><span class="style_13">(</span><span class="style_1">newInPut</span><span class="style_13">,</span><span class="style_1">aux</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">postString</span><span class="style_13">:=&nbsp;</span><span class="style_1">postString&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_10">'&nbsp;'&nbsp;</span><span class="style_13">+&nbsp;</span><span class="style_1">aux</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">close</span><span class="style_13">(</span><span class="style_1">newInPut</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">strOutPut</span><span class="style_13">:=&nbsp;</span><span class="style_10">''</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">analizar</span><span class="style_13">(</span><span class="style_1">postString</span><span class="style_13">);</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_1">flagInPut</span><span class="style_13">:=&nbsp;</span><span class="style_1">false</span><span class="style_13">;</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="style_9">end</span><span class="style_13">;</span><br />
+<span class="style_9">End</span><span class="style_13">;</span><br />
+<br />
+<span class="style_9">END</span><span class="style_13">.</span><br />
+
+</p>
+</body>
+</html>
+
+

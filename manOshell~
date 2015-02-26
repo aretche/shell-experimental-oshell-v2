@@ -1,0 +1,120 @@
+OShell(1)                                                    Shell Experimental                                                    OShell(1)
+
+NAME
+       OShell - Intérprete de comandos experimental (shell)
+
+VERSION
+       OShell v2.0
+
+SYNOPSIS
+       OShell [comando]
+       OShell [comando argumentos]
+
+DESCRIPTION
+       OShell es un intérprete de comandos realizado para la cátedra de
+       Sistemas Operativos de la Universidad Tecnológica Nacional,
+       Facultad Regional Concepción del Uruguay, Argentina.
+
+       Comandos
+
+       cat - Concatena dos archivos y muestra el resultado por pantalla.
+       Si se pasa como parámetro sólo un archivo, lo concatena con la salida estándar.
+
+       Ejemplos: cat ejemploCat ejemplo2Cat
+                 cat ejemploCat
+
+       cd - Cambia el directoria actual de trabajo.
+       Sin parámetros cambia el directorio a la carpeta personal
+       (directorio home) del usuario.
+
+       Ejemplos: cd /home/user
+                 cd ..
+                 cd
+
+       clear - Vacia el contenido de la pantalla y muestra un prompt.
+       Este comando no recibe argumentos.
+
+       exit - Cierra el programa.
+       Este comando no recibe argumentos.
+
+       kill - Envía una señal a un proceso (programa en ejecución).
+       El comando kill utiliza siempre dos argumentos, donde el primero es la
+       señal a envíar y el segundo es el pid (process ID) del proceso.
+
+       Sólo se admiten señales de tipo numérico, a continuación se enumeran
+       algunas señales y su valor:
+
+       (1) SIGHUP    (2) SIGINT    (3) SIGQUIT    (4) SIGILL    (5) SIGTRAP
+       (6) SIGABRT   (7) SIGBUS    (8) SIGFPE     (9) SIGKILL   (10) SIGUSR1
+       (11) SIGSEGV  (12) SIGUSR2  (13) SIGPIPE   (14) SIGALARM (15) SIGTERM
+
+       Ejemplos: kill 10 4312
+                 kill 9  6281
+
+       ls - Lista los archivos contenidos en un directorio determinado.
+       Si no se indica un directorio, se ejecuta sobre el directorio actual.
+       Los archivos listados se ordenan alfabeticamente.
+       Identifica con colores los diferentes tipos de archivos.
+
+       El comando ls soporta tres parámetros que pueden ser utilizados
+       solos o en conjunto. Estos son  <-a>  <-f>  y  <-l>:
+
+       <-a> - Lista todos los archivos (incluye archivos ocultos).
+       <-f> - No ordena los archivos y desactiva el uso de colores.
+       <-l> - Lista los archivos en formato largo.
+
+       Ejemplos: ls
+                 ls /home
+                 ls -l /home/user
+                 ls -a -l
+                 ls -a -f /home/user
+                 ls -a -f -l /home/user
+
+       pwd - Muestra el directorio actual de trabajo.
+       Este comando no admite argumentos.
+ Comandos externos
+
+       OShell ejecuta comandos externos a partir de una ruta relativa o absoluta.
+       El programa puede recibir parámetros.
+
+       fg - Ejecuta en primer plano un proceso pausado en segundo plano. Toma como parametro de entrada el pid del proceso a ejecutar, o bien, 	      si dicha entrada es vacia toma como referencia la mayor prioridad encontrada.
+       
+       bg - Pasa a ejecutar en segundo plano un proceso pausado. Toma como parametro de entrada el pid del proceso a ejecutar.
+      
+       jobs- Muestra informacion relativa a los procesos creados. Se muestra su pid, priorirdad, nombre y estado del mismo.
+	
+       & - Ejecuta un proceso en 2do plano y devuelve el control del shell.
+       
+       Ejemplos: /bin/ls
+                 ps
+                 man OShell
+
+      
+       Redirección - OShell permite la redirección de la salida estándar,
+       para ellos se utilizan los operadores '>' y '>>'.
+
+       '>' - Redirecciona la salida a un archivo externo, si el archivo no existe
+       lo crea, y si existe lo sobreescribe.
+
+       '>>' - Redirecciona la salida a un archivo externo, si el archivo no exite
+       lo crea, y si existe escribe al final del archivo.
+
+       Tuberías - OShell soporta el uso de tuberías sin nombre, aplicables únicamente a
+       comandos internos. El operados '|' se utiliza para indicar esta opción.
+
+BUGS
+     
+
+AUTHOR
+       OShell fue escrito por Fernando Gómez Albornoz. fgalbornoz07@gmail.com
+
+       Oshell fue modificado por Facundo Coto. facundocoto1@gmail.com y por Gabriel Tamay. jgabriel.tamay@gmail.com
+
+
+COPYRIGHT
+       Copyright © 2015 Free Software Foundation, Inc.
+       Licencia GPLv3+: GNU GPL versión 3 o superior.   http://gnu.org/licences/gpl.html
+       OShell es software libre: Eres libre de modificarlo y redistribuirlo.
+       No hay ninguna GARANTÍA, en la medida permitida por la ley.
+
+19 de febrero de 2015                                        Shell Experimental 
