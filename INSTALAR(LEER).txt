@@ -1,0 +1,27 @@
+Instrucciones:
+
+Ubicarse dentro del directorio ../shell-experimental-oshell-v2
+Ubicarse dentro de la carpeta Documentación.
+Ubicarse dentro de la carpeta Código Fuente
+
+Ejecutar:
+
+1. $ fpcmake
+
+2.Para compilar el programa y sus units: 
+   $ make
+
+3. Para instalar el programa (se requieren permisos de superusuario):
+   $ make install
+
+4. Para limpiar archivos innecesarios luego de la instalación:
+   $ make clean
+
+5. Para obtener información acerca de la instalación:
+    $ make info
+
+6. Para abrir el programa: 
+
+  $ OShell
+ 
+Escribir man OShellv2 para mas informacion.
