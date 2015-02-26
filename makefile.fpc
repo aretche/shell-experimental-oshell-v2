@@ -1,10 +1,17 @@
 [target]
-programs=OShel       #Programa principal
-units=analizador comandos utilidades
+programs=OShell  
+units= analizador comandos utilidades
 examples=ejemplo2Cat ejemploCat
-
 
 [compiler]
 version=2.4.0
+
+[package]
+name= Oshell
+version= 2.0
+
+[install]
+datadir= /usr/share/man/es/man1/
+files= manOshell.1
 
 
