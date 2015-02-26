@@ -1,6 +1,6 @@
 [target]
 programs=OShel       #Programa principal
-units=analizador.pp comandos.pp utilidades.pp
+units=analizador comandos utilidades
 examples=ejemplo2Cat ejemploCat
 
 
